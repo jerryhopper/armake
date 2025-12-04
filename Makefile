@@ -17,9 +17,9 @@ CLIBS = -I$(LIB) -lm -lcrypto
 $(BIN)/armake: \
         $(patsubst %.c, %.o, $(wildcard $(SRC)/*.c)) \
         $(SRC)/rapify.tab.o $(SRC)/rapify.yy.o \
-        $(patsubst %.c, %.o, $(wildcard $(LIB)/*.c))
-        @mkdir -p $(BIN)
-        @echo " LINK $(BIN)/armake$(EXT)"
+		$(patsubst %.c, %.o, $(wildcard $(LIB)/*.c))
+		@mkdir -p $(BIN)
+		@echo " LINK $(BIN)/armake$(EXT)"
         @$(CC) $(CFLAGS) -o $(BIN)/armake$(EXT) \
         $(patsubst %.c, %.o, $(filter-out $(SRC)/rapify.tab.c $(SRC)/rapify.yy.c, $(wildcard $(SRC)/*.c))) \
         $(SRC)/rapify.tab.o $(SRC)/rapify.yy.o \
