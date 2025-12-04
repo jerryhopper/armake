@@ -21,14 +21,14 @@ $(BIN)/armake: \
 		@mkdir -p $(BIN)
 		@echo " LINK $(BIN)/armake$(EXT)"
 		@$(CC) $(CFLAGS) -o $(BIN)/armake$(EXT) \
-		$(patsubst %.c, %.o, $(filter-out $(SRC)/rapify.tab.c $(SRC)/rapify.yy.c, $(wildcard $(SRC)/*.c))) \
+		$(patsubst %.c, %.o, $(filter-out $(SRC)/rapify.c $(SRC)/rapify.yy.c, $(wildcard $(SRC)/*.c))) \
 		$(SRC)/rapify.tab.o $(SRC)/rapify.yy.o \
 		$(patsubst %.c, %.o, $(wildcard $(LIB)/*.c)) \
 		$(CLIBS)
 
 $(SRC)/rapify.tab.c: $(SRC)/rapify.y
 		@echo " BISN $(SRC)/rapify.y"
-		@$(BISON) -o $(SRC)/rapify.tab.c --defines=$(SRC)/rapify.tab.h $(SRC)/rapify.y
+		@$(BISON) -o $(SRC)/rapify.tab.c --defines=$(SRC)/rapify.h $(SRC)/rapify.y
 
 $(SRC)/rapify.yy.c: $(SRC)/rapify.l $(SRC)/rapify.tab.c
 		@echo " FLEX $(SRC)/rapify.l"
